@@ -1,0 +1,6 @@
+CREATE TABLE Player (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    sport TEXT NOT NULL,
+    city TEXT NOT NULL
+);

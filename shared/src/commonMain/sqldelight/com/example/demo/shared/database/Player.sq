@@ -1,0 +1,28 @@
+CREATE TABLE Player (
+    id INTEGER NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    sport TEXT NOT NULL,
+    city TEXT NOT NULL
+);
+
+selectAllPlayers:
+SELECT *
+FROM Player
+ORDER BY name COLLATE NOCASE ASC;
+
+selectPlayerById:
+SELECT *
+FROM Player
+WHERE id = ?;
+
+insertPlayer:
+INSERT OR REPLACE INTO Player (
+    id,
+    name,
+    sport,
+    city
+)
+VALUES (?, ?, ?, ?);
+
+deleteAllPlayers:
+DELETE FROM Player;

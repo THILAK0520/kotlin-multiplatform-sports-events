@@ -4,7 +4,7 @@ agp = "9.1.1"
 kotlin = "2.4.20"
 composeMultiplatform = "1.12.2"
 kotlin-wrappers = "2026.9.3"
-sqldelight = "2.1.0"
+sqldelight = "2.2.1"
 
 android-compileSdk = "37"
 android-minSdk = "24"
