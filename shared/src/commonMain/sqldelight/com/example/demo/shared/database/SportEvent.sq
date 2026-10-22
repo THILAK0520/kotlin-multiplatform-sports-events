@@ -1,5 +1,5 @@
 
-CREATE TABLE SportEvent (
+CREATE TABLE IF NOT EXISTS SportEvent (
     id INTEGER NOT NULL PRIMARY KEY,
     title TEXT NOT NULL,
     category TEXT NOT NULL,

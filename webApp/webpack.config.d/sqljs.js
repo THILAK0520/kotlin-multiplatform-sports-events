@@ -25,3 +25,15 @@ config.plugins.push(
         Buffer: ["buffer", "Buffer"]
     })
 );
+
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+config.plugins.push(
+    new CopyWebpackPlugin({
+        patterns: [
+            {
+                from: require.resolve("sql.js/dist/sql-wasm.js"),
+                to: "sql-wasm.js"
+            }
+        ]
+    })
+);

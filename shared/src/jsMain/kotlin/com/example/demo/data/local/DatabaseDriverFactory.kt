@@ -11,7 +11,7 @@ class DatabaseDriverFactory
     fun createDriver(): SqlDriver {
         val worker = Worker(
             js(
-                "new URL('@cashapp/sqldelight-sqljs-worker/sqljs.worker.js', import.meta.url)"
+                "new URL('player-db.worker.js', window.location.href)"
             )
         )
 
