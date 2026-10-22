@@ -1,0 +1,35 @@
+
+CREATE TABLE SportEvent (
+    id INTEGER NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    category TEXT NOT NULL,
+    organizer TEXT NOT NULL,
+    description TEXT NOT NULL,
+    date TEXT NOT NULL,
+    location TEXT NOT NULL
+);
+
+selectAll:
+SELECT *
+FROM SportEvent
+ORDER BY date ASC;
+
+selectById:
+SELECT *
+FROM SportEvent
+WHERE id = ?;
+
+insertEvent:
+INSERT OR REPLACE INTO SportEvent (
+    id,
+    title,
+    category,
+    organizer,
+    description,
+    date,
+    location
+)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+deleteAll:
+DELETE FROM SportEvent;
