@@ -3,7 +3,6 @@ package com.example.demo.screens.events
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,44 +20,35 @@ import com.example.demo.designsystem.components.AppLoadingIndicator
 import com.example.demo.designsystem.components.EventCard
 
 @Composable
-fun EventsScreen(component: EventComponent) {
+fun EventsScreen(component: EventComponent, modifier: Modifier = Modifier) {
     val state by component.state.collectAsState()
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+            .fillMaxWidth()
+            .then(modifier),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Text(
-            text = "Sports Events",
-            style = MaterialTheme.typography.headlineMedium
-        )
-
-        AppButton(
-            text = "Refresh",
-            onClick = component::onRefresh,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        if (state.isLoading && state.events.isEmpty()) {
-            AppLoadingIndicator(
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-        }
-
         state.errorMessage?.let { message ->
             Text(
                 text = message,
-                color = MaterialTheme.colorScheme.error
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(vertical = 4.dp)
             )
         }
 
-        if (state.events.isEmpty() && !state.isLoading) {
-            Text("No sports events available.")
-        } else {
+        when {
+            state.isLoading && state.events.isEmpty() -> AppLoadingIndicator(
+                modifier = Modifier
+                    .weight(1f)
+                    .align(Alignment.CenterHorizontally)
+            )
+            state.events.isEmpty() -> Text("No sports events available.", modifier = Modifier.weight(1f))
+            else -> {
             LazyColumn(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(
@@ -68,6 +58,14 @@ fun EventsScreen(component: EventComponent) {
                     EventCard(event = event)
                 }
             }
+            }
         }
+
+        AppButton(
+            text = if (state.isLoading) "Refreshing…" else "Refresh",
+            onClick = component::onRefresh,
+            modifier = Modifier.fillMaxWidth(),
+            enabled = !state.isLoading
+        )
     }
 }
