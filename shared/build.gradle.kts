@@ -100,14 +100,6 @@ kotlin {
     }
 }
 
-//sqldelight {
-//    databases {
-//        create("AppDatabase") {
-//            packageName.set("com.example.demo.shared.database")
-//            generateAsync.set(true)
-//        }
-//    }
-//}
 sqldelight {
     databases {
         create("AppDatabase") {

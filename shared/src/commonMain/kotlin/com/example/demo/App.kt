@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.arkivanov.decompose.ComponentContext
 import com.example.demo.data.local.EventsLocalDataSource
+import com.example.demo.data.local.PlayersLocalDataSource
 import com.example.demo.data.remote.EventsRemoteDataSource
 import com.example.demo.data.remote.createHttpClient
 import com.example.demo.data.repository.EventsRepositoryImpl
@@ -27,7 +28,10 @@ fun App(
             remoteDataSource = remoteDataSource,
             localDataSource = EventsLocalDataSource(database)
         )
-        val playersRepository = PlayersRepositoryImpl(remoteDataSource)
+        val playersRepository = PlayersRepositoryImpl(
+            remoteDataSource = remoteDataSource,
+            localDataSource = PlayersLocalDataSource(database)
+        )
 
         RootComponent.Factory(eventsRepository, playersRepository).create(componentContext)
     }
