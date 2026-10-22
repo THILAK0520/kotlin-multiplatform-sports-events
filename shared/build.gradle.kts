@@ -50,8 +50,8 @@ kotlin {
 
             // SQLDelight
             implementation(libs.sqldelight.runtime)
-            implementation("app.cash.sqldelight:coroutines-extensions:2.1.0")
-            implementation("app.cash.sqldelight:async-extensions:2.1.0")
+            implementation("app.cash.sqldelight:coroutines-extensions:2.2.1")
+            implementation("app.cash.sqldelight:async-extensions:2.2.1")
 
             // Decompose (expose ComponentContext to dependent modules)
             api("com.arkivanov.decompose:decompose:3.3.0")
@@ -78,9 +78,9 @@ kotlin {
             implementation(libs.ktor.client.js)
 
             // SQLDelight browser worker
-            implementation("app.cash.sqldelight:web-worker-driver:2.1.0")
+            implementation("app.cash.sqldelight:web-worker-driver:2.2.1")
             implementation(
-                npm("@cashapp/sqldelight-sqljs-worker", "2.1.0")
+                npm("@cashapp/sqldelight-sqljs-worker", "2.2.1")
             )
             implementation(npm("sql.js", "1.8.0"))
             implementation(devNpm("copy-webpack-plugin", "9.1.0"))
@@ -91,7 +91,7 @@ kotlin {
         }
 
         webMain.dependencies {
-            implementation("app.cash.sqldelight:web-worker-driver:2.1.0")
+            implementation("app.cash.sqldelight:web-worker-driver:2.2.1")
         }
 
         commonTest.dependencies {
